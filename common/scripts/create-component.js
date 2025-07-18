@@ -151,13 +151,13 @@ function addProjectToRushJson(gitRoot, componentName, componentType) {
     );
 
     if (existingProject) {
-      console.log(`Project ${packageName} already exists in rush.json`);
+      console.log(`Project @labrador-sgd/${packageName} already exists in rush.json`);
       return;
     }
 
     // Add new project
     const newProject = {
-      packageName: packageName,
+      packageName: `@labrador-sgd/${packageName}`,
       projectFolder: projectFolder,
       tags: [tag],
       shouldPublish: true
