@@ -67,6 +67,30 @@
         "atom-component"
       ],
       "shouldPublish": true
+    },
+    {
+      "packageName": "@labrador-sgd/aria-props",
+      "projectFolder": "src/shared/aria-props",
+      "tags": [
+        "shared-component"
+      ],
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@labrador-sgd/default-props",
+      "projectFolder": "src/shared/default-props",
+      "tags": [
+        "shared-component"
+      ],
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@labrador-sgd/interactive-props",
+      "projectFolder": "src/shared/interactive-props",
+      "tags": [
+        "shared-component"
+      ],
+      "shouldPublish": true
     }
   ]
 }
