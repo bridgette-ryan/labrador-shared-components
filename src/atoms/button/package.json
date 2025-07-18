@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.27.1",
-    "@labrador-sgd/aria-props": "^0.0.1",
+    "@labrador-sgd/aria-props": "^0.0.2",
     "@labrador-sgd/default-props": "^0.0.1",
     "@labrador-sgd/interactive-props": "^0.0.1"
   }
