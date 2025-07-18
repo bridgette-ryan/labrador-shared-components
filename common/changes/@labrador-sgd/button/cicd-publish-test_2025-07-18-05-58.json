@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/button",
+      "comment": "stubbed to return bootstrap button for now",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@labrador-sgd/button"
+}

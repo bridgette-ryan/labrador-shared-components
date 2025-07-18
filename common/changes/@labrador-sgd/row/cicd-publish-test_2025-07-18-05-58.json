@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/row",
+      "comment": "stubbed to return div for now",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@labrador-sgd/row"
+}

@@ -37,7 +37,11 @@ jobs:
         run: node common/scripts/install-run-rush.js build
         
       - name: Rush Publish (Dry Run)
-        run: node common/scripts/install-run-rush.js publish --publish --registry https://registry.npmjs.org
+        run: |
+          export NPM_AUTH_TOKEN=${{ secrets.NPMJS_AUTH_TOKEN }}
+          node common/scripts/install-run-rush.js publish --publish --registry https://registry.npmjs.org
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
         
   # Job for main branch - actual publish
   publish-on-merge:
@@ -76,28 +80,50 @@ jobs:
       - name: Rush Build
         run: node common/scripts/install-run-rush.js build
         
-      - name: Rush Publish
+      - name: Debug NPM configuration
         run: |
-          export NPM_AUTH_TOKEN=${{ secrets.NPMJS_AUTH_TOKEN }}
-          node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --set-access-level public
+          echo "Checking NPM configuration..."
+          echo "NPM_AUTH_TOKEN is set: $([ -n "$NPM_AUTH_TOKEN" ] && echo 'YES' || echo 'NO')"
+          echo "Contents of .npmrc-publish:"
+          cat common/config/rush/.npmrc-publish || echo "File not found"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          
+      - name: Rush Publish
+        run: node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --set-access-level public
+        env:
           NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
           
       - name: Create Pull Request for version updates
         if: success()
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: update package versions after publish'
-          title: 'Auto: Update package versions after publish'
-          body: |
-            This PR contains automatic version updates after publishing packages.
+        run: |
+          # Check if there are any changes to commit
+          if [[ -n $(git status --porcelain) ]]; then
+            # Create a new branch for the PR
+            BRANCH_NAME="auto/version-updates-${{ github.run_id }}"
+            git checkout -b $BRANCH_NAME
             
+            # Stage and commit all changes
+            git add .
+            git commit -m "chore: update package versions after publish"
+            
+            # Push the branch
+            git push origin $BRANCH_NAME
+            
+            # Create PR using GitHub CLI
+            gh pr create \
+              --title "Auto: Update package versions after publish" \
+              --body "This PR contains automatic version updates after publishing packages.
+
             Build ID: ${{ github.run_id }}
-            Commit: ${{ github.sha }}
-          branch: auto/version-updates-${{ github.run_id }}
-          delete-branch: true
+            Commit: ${{ github.sha }}" \
+              --base main \
+              --head $BRANCH_NAME
+          else
+            echo "No changes to commit, skipping PR creation"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Display logs on failure
         if: failure()

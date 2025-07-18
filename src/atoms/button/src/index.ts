@@ -1,2 +1,2 @@
-export { Base } from "./Base";
+export { Button } from "./Button";
 //export * from "./types";

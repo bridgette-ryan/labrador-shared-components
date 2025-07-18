@@ -1,2 +1,2 @@
-export { Base } from "./Base";
+export { SmartGrid } from "./SmartGrid";
 //export * from "./types";

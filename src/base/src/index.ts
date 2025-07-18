@@ -1,2 +1,2 @@
-export { Base } from "./Base";
+export { ComponentBase } from "./ComponentBase";
 //export * from "./types";
