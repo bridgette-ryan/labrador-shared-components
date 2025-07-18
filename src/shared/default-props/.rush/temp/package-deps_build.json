@@ -1,0 +1,12 @@
+{
+  "files": {
+    "src/shared/default-props/.rush/temp/shrinkwrap-deps.json": "dee7cf7512206e493f22224850243478e838caf0",
+    "src/shared/default-props/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/shared/default-props/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
+    "src/shared/default-props/package.json": "b74ee883e7931beb5dcfd02b909ed7870ec0aeb3",
+    "src/shared/default-props/src/DefaultProps.tsx": "d49276e1307bc00d34d61f757a8840685ed5f69c",
+    "src/shared/default-props/src/index.ts": "92829679a7645cedf958e71d3b7edbca3f69404f",
+    "src/shared/default-props/tsconfig.json": "8283f6bac22cc1fa5788c6e92fa50b9a735d22dc"
+  },
+  "arguments": "npx tsc "
+}
