@@ -1,0 +1,16 @@
+{
+  "files": {
+    "src/layouts/row/.rush/temp/shrinkwrap-deps.json": "8e8835c869bfa6b41db324761baa03ef7fa2be91",
+    "src/layouts/row/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/row/babel.config.js": "9fec19f637f6112ecb957f3bfed3194254edcaed",
+    "src/layouts/row/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
+    "src/layouts/row/package.json": "fa3d8ee4c6990eb8bfca6853ae680932b533d26c",
+    "src/layouts/row/pnpm-lock.yaml": "69a737f9146699681f6485fa370871cfaa9a60a0",
+    "src/layouts/row/src/Row.tsx": "731edc56d28110f28dad86ab2acbcb2201815d8c",
+    "src/layouts/row/src/__tests__/Row.test.tsx": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/row/src/index.ts": "2bd6a4d27e6c853b66f8df48964e4f1d0e46a8bf",
+    "src/layouts/row/src/types/Row.types.ts": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/row/tsconfig.json": "8283f6bac22cc1fa5788c6e92fa50b9a735d22dc"
+  },
+  "arguments": "npx tsc "
+}

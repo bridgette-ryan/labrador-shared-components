@@ -1,0 +1,24 @@
+{
+  "name": "@labrador-sgd/button",
+  "entries": [
+    {
+      "version": "0.0.1",
+      "tag": "@labrador-sgd/button_v0.0.1",
+      "date": "Fri, 18 Jul 2025 09:09:59 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "stubbed to return bootstrap button for now",
+            "author": "Bridgette Ryan <bridgetteryan3@gmail.com>",
+            "commit": "883f56e3f0b630e59bef065c3b091a73be7f63ea"
+          },
+          {
+            "comment": "added basic props",
+            "author": "Bridgette Ryan <bridgetteryan3@gmail.com>",
+            "commit": "718c9fd26b2031ea68c3a22f49817f2b833364ca"
+          }
+        ]
+      }
+    }
+  ]
+}

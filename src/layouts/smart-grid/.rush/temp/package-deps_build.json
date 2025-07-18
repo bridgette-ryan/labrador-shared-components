@@ -1,0 +1,16 @@
+{
+  "files": {
+    "src/layouts/smart-grid/.rush/temp/shrinkwrap-deps.json": "dce251fc562be17489271fe755763c889a23d762",
+    "src/layouts/smart-grid/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/smart-grid/babel.config.js": "9fec19f637f6112ecb957f3bfed3194254edcaed",
+    "src/layouts/smart-grid/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
+    "src/layouts/smart-grid/package.json": "3bc049709f0e158222916c8d639df5333736f652",
+    "src/layouts/smart-grid/pnpm-lock.yaml": "69a737f9146699681f6485fa370871cfaa9a60a0",
+    "src/layouts/smart-grid/src/SmartGrid.tsx": "af3f0fcb42119108d81b3cfea057d7fbf5767c7c",
+    "src/layouts/smart-grid/src/__tests__/SmartGrid.test.tsx": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/smart-grid/src/index.ts": "8bc713fa6d83642312819b477edf4cdcddb99db3",
+    "src/layouts/smart-grid/src/types/SmartGrid.types.ts": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/smart-grid/tsconfig.json": "8283f6bac22cc1fa5788c6e92fa50b9a735d22dc"
+  },
+  "arguments": "npx tsc "
+}
