@@ -1,7 +1,7 @@
 {
   "files": {
     "src/layouts/column/.rush/temp/chunked-rush-logs/column.build.chunks.jsonl": "c5ef7765ae5cda69295978ec375dae58d9728086",
-    "src/layouts/column/.rush/temp/package-deps_build.json": "67dfb3cb24d1f725910ea1d43c0e415d87632c39",
+    "src/layouts/column/.rush/temp/package-deps_build.json": "27086256b061257a720741e941177134f859be6e",
     "src/layouts/column/.rush/temp/shrinkwrap-deps.json": "060062cec62ffe62bdf73b71ab46e21d2911623c",
     "src/layouts/column/CHANGELOG.json": "1c3e405c359e1d8c034bf27d856a9441c88343c8",
     "src/layouts/column/CHANGELOG.md": "5b746d7616d164e4a2c199f19dbeee400b47cd58",
