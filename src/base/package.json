@@ -1,5 +1,5 @@
 {
-  "name": "@labrador-sgd/componentb-base",
+  "name": "@labrador-sgd/component-base",
   "version": "0.0.0",
   "description": "",
   "main": "./dist/index.js",
