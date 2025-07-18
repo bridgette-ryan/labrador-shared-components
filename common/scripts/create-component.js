@@ -110,13 +110,98 @@ function renameFile(oldPath, newPath) {
   if (fs.existsSync(oldPath)) {
     fs.renameSync(oldPath, newPath);
     console.log(`Renamed ${oldPath} to ${newPath}`);
-  } else {
-    console.log(`File not found: ${oldPath}`);
+  }
+  // Removed the "File not found" message to avoid confusion
+}
+
+// Function to get the appropriate tag based on component type
+function getComponentTag(componentType) {
+  const tagMap = {
+    'layout': 'layout-component',
+    'atom': 'atom-component',
+    'molecule': 'molecule-component',
+    'organism': 'organism-component'
+  };
+  return tagMap[componentType] || 'shared-component';
+}
+
+// Function to add project to rush.json
+function addProjectToRushJson(gitRoot, componentName, componentType) {
+  const rushJsonPath = path.join(gitRoot, 'rush.json');
+  
+  if (!fs.existsSync(rushJsonPath)) {
+    console.log('Warning: rush.json not found in git root');
+    return;
+  }
+
+  try {
+    const rushJson = JSON.parse(fs.readFileSync(rushJsonPath, 'utf8'));
+    
+    if (!rushJson.projects) {
+      rushJson.projects = [];
+    }
+
+    const projectFolder = `src/${componentType}s/${componentName}`;
+    const packageName = componentName;
+    const tag = getComponentTag(componentType);
+
+    // Check if project already exists
+    const existingProject = rushJson.projects.find(
+      project => project.packageName === packageName || project.projectFolder === projectFolder
+    );
+
+    if (existingProject) {
+      console.log(`Project ${packageName} already exists in rush.json`);
+      return;
+    }
+
+    // Add new project
+    const newProject = {
+      packageName: packageName,
+      projectFolder: projectFolder,
+      tags: [tag],
+      shouldPublish: true
+    };
+
+    rushJson.projects.push(newProject);
+
+    // Sort projects by tag first, then alphabetically by package name
+    const tagOrder = [
+      'non-published-template',
+      'shared-component',
+      'layout-component', 
+      'organism-component',
+      'molecule-component',
+      'atom-component'
+    ];
+
+    rushJson.projects.sort((a, b) => {
+      const aTag = a.tags?.[0] || '';
+      const bTag = b.tags?.[0] || '';
+      
+      const aTagIndex = tagOrder.indexOf(aTag);
+      const bTagIndex = tagOrder.indexOf(bTag);
+      
+      // If tags are different, sort by tag order
+      if (aTagIndex !== bTagIndex) {
+        return aTagIndex - bTagIndex;
+      }
+      
+      // If tags are the same, sort alphabetically by package name
+      return a.packageName.localeCompare(b.packageName);
+    });
+
+    // Write back to file with proper formatting
+    fs.writeFileSync(rushJsonPath, JSON.stringify(rushJson, null, 2));
+    console.log(`Added project ${packageName} to rush.json with tag: ${tag}`);
+    
+  } catch (error) {
+    console.error('Error updating rush.json:', error);
   }
 }
 
 // Function to copy directory contents recursively and perform additional modifications
-function copyAndModifyDir(src, dest, componentName) {
+function copyAndModifyDir(src, dest, componentName, isRootLevel = true) {
   fs.mkdirSync(dest, { recursive: true });
   let entries = fs.readdirSync(src, { withFileTypes: true });
 
@@ -134,58 +219,61 @@ function copyAndModifyDir(src, dest, componentName) {
     }
 
     if (entry.isDirectory()) {
-      copyAndModifyDir(srcPath, destPath, componentName);
+      copyAndModifyDir(srcPath, destPath, componentName, false);
     } else {
       fs.copyFileSync(srcPath, destPath);
     }
   }
 
-  // After copying, perform the additional steps
-  const pascalCaseName = toPascalCase(componentName);
+  // Only perform renaming and replacements at the root level
+  if (isRootLevel) {
+    // After copying, perform the additional steps
+    const pascalCaseName = toPascalCase(componentName);
 
-  // 1. Rename Base typescript files to the PascalCase component name
-  // Rename the main component file
-  const oldComponentPath = path.join(dest, "src", "ComponentBase.tsx");
-  const newComponentPath = path.join(dest, "src", `${pascalCaseName}.tsx`);
-  renameFile(oldComponentPath, newComponentPath);
+    // 1. Rename Base typescript files to the PascalCase component name
+    // Rename the main component file
+    const oldComponentPath = path.join(dest, "src", "ComponentBase.tsx");
+    const newComponentPath = path.join(dest, "src", `${pascalCaseName}.tsx`);
+    renameFile(oldComponentPath, newComponentPath);
 
-  // Rename the test file
-  const oldTestPath = path.join(dest, "src", "__tests__", "ComponentBase.test.tsx");
-  const newTestPath = path.join(
-    dest,
-    "src",
-    "__tests__",
-    `${pascalCaseName}.test.tsx`
-  );
-  renameFile(oldTestPath, newTestPath);
+    // Rename the test file
+    const oldTestPath = path.join(dest, "src", "__tests__", "ComponentBase.test.tsx");
+    const newTestPath = path.join(
+      dest,
+      "src",
+      "__tests__",
+      `${pascalCaseName}.test.tsx`
+    );
+    renameFile(oldTestPath, newTestPath);
 
-  // Rename the types file
-  const oldTypesPath = path.join(dest, "src", "types", "ComponentBase.types.ts");
-  const newTypesPath = path.join(
-    dest,
-    "src",
-    "types",
-    `${pascalCaseName}.types.ts`
-  );
-  renameFile(oldTypesPath, newTypesPath);
+    // Rename the types file
+    const oldTypesPath = path.join(dest, "src", "types", "ComponentBase.types.ts");
+    const newTypesPath = path.join(
+      dest,
+      "src",
+      "types",
+      `${pascalCaseName}.types.ts`
+    );
+    renameFile(oldTypesPath, newTypesPath);
 
-  // 2. Update package.json
-  const packageJsonPath = path.join(dest, "package.json");
-  if (fs.existsSync(packageJsonPath)) {
-    let packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    packageJson.name = `@labrador-sgd/${componentName}`;  // Make sure to change this
-    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  }
-
-  // 3. Replace 'Base' with PascalCase name in renamed file and index.ts
-  const filesToUpdate = [newComponentPath, path.join(dest, "src", "index.ts")];
-  filesToUpdate.forEach((filePath) => {
-    if (fs.existsSync(filePath)) {
-      let content = fs.readFileSync(filePath, "utf8");
-      content = content.replace(/ComponentBase/g, pascalCaseName);
-      fs.writeFileSync(filePath, content);
+    // 2. Update package.json
+    const packageJsonPath = path.join(dest, "package.json");
+    if (fs.existsSync(packageJsonPath)) {
+      let packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+      packageJson.name = `@labrador-sgd/${componentName}`;  // Make sure to change this
+      fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     }
-  });
+
+    // 3. Replace 'Base' with PascalCase name in renamed file and index.ts
+    const filesToUpdate = [newComponentPath, path.join(dest, "src", "index.ts")];
+    filesToUpdate.forEach((filePath) => {
+      if (fs.existsSync(filePath)) {
+        let content = fs.readFileSync(filePath, "utf8");
+        content = content.replace(/ComponentBase/g, pascalCaseName);
+        fs.writeFileSync(filePath, content);
+      }
+    });
+  }
 }
 
 // Function to confirm selection
@@ -281,6 +369,9 @@ async function main() {
             `Base directory ${baseDir} does not exist. Skipping file copy.`
           );
         }
+
+        // Add project to rush.json
+        addProjectToRushJson(gitRoot, name, selectedComponent);
 
         console.log(`Component has been created in: ${dirPath}`);
         // Add any additional steps here if needed

@@ -1,61 +1,62 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-
   "rushVersion": "5.155.1",
   "pnpmVersion": "10.13.1",
   "nodeSupportedVersionRange": ">=18.20.3 <19.0.0 || >=20.14.0 <25.0.0",
-
-  "gitPolicy": {
-  },
-
+  "gitPolicy": {},
   "repository": {
     "url": "https://github.com/bridgette-ryan/labrador-shared-components",
     "defaultBranch": "main"
   },
-
   "eventHooks": {
     "preRushInstall": [],
-
     "postRushInstall": [],
-
     "preRushBuild": [],
-
     "postRushBuild": [],
-
     "preRushx": [],
-
     "postRushx": []
   },
-
-   "variants": [],
-
-  "allowedProjectTags": [ "shared-component", "atom-component", "molecule-component", "layout-component", "organism-component" ],
-
+  "variants": [],
+  "allowedProjectTags": [
+    "shared-component",
+    "atom-component",
+    "molecule-component",
+    "layout-component",
+    "organism-component",
+    "non-published-template"
+  ],
   "projects": [
-    // {
-    //   "packageName": "my-app",
-    //   "projectFolder": "apps/my-app",
-    //   /**
-    //    * A flag indicating that changes to this project will be published to npm, which affects
-    //    * the Rush change and publish workflows. The default value is false.
-    //    * NOTE: "versionPolicyName" and "shouldPublish" are alternatives; you cannot specify them both.
-    //    */
-    //   // "shouldPublish": false,
-    // 
-    // },
-    // 
-    // {
-    //   "packageName": "my-controls",
-    //   "projectFolder": "libraries/my-controls",
-    //   "reviewCategory": "production",
-    //   "tags": [ "frontend-team" ]
-    // },
-    // 
-    // {
-    //   "packageName": "my-toolchain",
-    //   "projectFolder": "tools/my-toolchain",
-    //   "reviewCategory": "tools",
-    //   "tags": [ "tools" ]
-    // }
+    {
+      "packageName": "component-base",
+      "projectFolder": "src/base",
+      "tags": [
+        "non-published-template"
+      ],
+      "shouldPublish": false
+    },
+    {
+      "packageName": "column",
+      "projectFolder": "src/layouts/column",
+      "tags": [
+        "layout-component"
+      ],
+      "shouldPublish": true
+    },
+    {
+      "packageName": "row",
+      "projectFolder": "src/layouts/row",
+      "tags": [
+        "layout-component"
+      ],
+      "shouldPublish": true
+    },
+    {
+      "packageName": "smart-grid",
+      "projectFolder": "src/layouts/smart-grid",
+      "tags": [
+        "layout-component"
+      ],
+      "shouldPublish": true
+    }
   ]
 }
