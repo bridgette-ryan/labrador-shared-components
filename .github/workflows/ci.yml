@@ -79,16 +79,25 @@ jobs:
         
       - name: Rush Build
         run: node common/scripts/install-run-rush.js build
-        
-      - name: Debug NPM configuration
+          
+      - name: Setup npm authentication
         run: |
-          echo "Checking NPM configuration..."
-          echo "NPM_AUTH_TOKEN is set: $([ -n "$NPM_AUTH_TOKEN" ] && echo 'YES' || echo 'NO')"
-          echo "Contents of .npmrc-publish:"
-          cat common/config/rush/.npmrc-publish || echo "File not found"
+          # Create/update .npmrc in the publish directory
+          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "access=public" >> ~/.npmrc
+          
+          # Also ensure Rush's publish home has the correct config
+          mkdir -p common/temp/publish-home
+          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > common/temp/publish-home/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> common/temp/publish-home/.npmrc
+          echo "access=public" >> common/temp/publish-home/.npmrc
+          
+          # Verify the token works
+          npm whoami
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
-          
+
       - name: Rush Publish
         run: node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --set-access-level public
         env:
