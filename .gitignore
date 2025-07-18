@@ -1,6 +1,8 @@
 # rush files
 /common/temp
 
+/src/*/.rush/temp
+
 # Logs
 logs
 *.log
