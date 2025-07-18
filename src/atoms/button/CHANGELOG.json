@@ -2,6 +2,20 @@
   "name": "@labrador-sgd/button",
   "entries": [
     {
+      "version": "0.0.2",
+      "tag": "@labrador-sgd/button_v0.0.2",
+      "date": "Fri, 18 Jul 2025 13:23:31 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "added shared prop types",
+            "author": "Bridgette Ryan <bridgetteryan3@gmail.com>",
+            "commit": "b4866bee7b07c86518d3e99cadd95e17a24ab8c0"
+          }
+        ]
+      }
+    },
+    {
       "version": "0.0.1",
       "tag": "@labrador-sgd/button_v0.0.1",
       "date": "Fri, 18 Jul 2025 09:09:59 GMT",
