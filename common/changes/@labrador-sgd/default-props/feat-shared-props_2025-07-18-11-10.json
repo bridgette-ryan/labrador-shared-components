@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/default-props",
+      "comment": "initialized default props",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@labrador-sgd/default-props"
+}
