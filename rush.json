@@ -57,6 +57,14 @@
         "layout-component"
       ],
       "shouldPublish": true
+    },
+    {
+      "packageName": "button",
+      "projectFolder": "src/atoms/button",
+      "tags": [
+        "atom-component"
+      ],
+      "shouldPublish": true
     }
   ]
 }

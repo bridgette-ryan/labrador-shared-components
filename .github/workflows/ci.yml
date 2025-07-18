@@ -1,0 +1,117 @@
+# Generated via Claude.ai
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # Job for pull requests - dry run
+  build-and-test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch entire history like Azure pipeline
+          
+      - name: Git config user
+        uses: snow-actions/git-config-user@v1.0.0
+        with:
+          name: GitHub Actions Bot
+          email: actions@github.com
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          
+      - name: Verify Change Logs
+        run: node common/scripts/install-run-rush.js change --verify
+        
+      - name: Rush Install
+        run: node common/scripts/install-run-rush.js install
+        
+      - name: Rush Build
+        run: node common/scripts/install-run-rush.js build
+        
+      - name: Rush Publish (Dry Run)
+        run: node common/scripts/install-run-rush.js publish --publish --registry https://registry.npmjs.org
+        
+  # Job for main branch - actual publish
+  publish-on-merge:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      !contains(github.event.head_commit.message, 'Automatic commit of uncommitted changes')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch entire history
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Git config user
+        uses: snow-actions/git-config-user@v1.0.0
+        with:
+          name: GitHub Actions Bot
+          email: actions@github.com
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Verify Change Logs
+        run: node common/scripts/install-run-rush.js change --verify
+        
+      - name: Rush Update
+        run: node common/scripts/install-run-rush.js update
+        
+      - name: Rush Install
+        run: node common/scripts/install-run-rush.js install
+        
+      - name: Rush Build
+        run: node common/scripts/install-run-rush.js build
+        
+      - name: Rush Publish
+        run: |
+          export NPM_AUTH_TOKEN=${{ secrets.NPMJS_AUTH_TOKEN }}
+          node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --set-access-level public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          
+      - name: Create Pull Request for version updates
+        if: success()
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update package versions after publish'
+          title: 'Auto: Update package versions after publish'
+          body: |
+            This PR contains automatic version updates after publishing packages.
+            
+            Build ID: ${{ github.run_id }}
+            Commit: ${{ github.sha }}
+          branch: auto/version-updates-${{ github.run_id }}
+          delete-branch: true
+          
+      - name: Display logs on failure
+        if: failure()
+        run: |
+          echo "Displaying contents of npm log files:"
+          find . -name "*.log" -type f -exec echo "Contents of {}:" \; -exec cat {} \; -exec echo "--------------------------------" \;
+          
+          # Also check common Rush log locations
+          if [ -d "common/temp" ]; then
+            echo "Contents of common/temp directory:"
+            ls -la common/temp/
+            find common/temp -name "*.log" -type f -exec echo "Contents of {}:" \; -exec cat {} \; -exec echo "--------------------------------" \;
+          fi
