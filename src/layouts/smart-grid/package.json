@@ -32,6 +32,8 @@
     "lint-staged": "^16.1.2",
     "@popperjs/core": "^2.11.8",
     "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.1.0",
     "react-test-renderer": "^19.1.0",
     "ts-jest": "^29.4.0",
     "ts-loader": "^9.5.2",

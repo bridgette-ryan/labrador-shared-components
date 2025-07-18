@@ -1,3 +1,8 @@
-export const Button = () => {};
+import { Button as BootstrapButton } from 'react-bootstrap';
+
+
+export const Button = () => {
+    return <BootstrapButton variant='primary'></BootstrapButton>;
+};
 
 export default Button;

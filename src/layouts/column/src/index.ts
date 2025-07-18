@@ -1,2 +1,2 @@
-export { Base } from "./Base";
+export { Column } from "./Column";
 //export * from "./types";
