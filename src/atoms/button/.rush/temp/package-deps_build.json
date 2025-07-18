@@ -1,14 +1,14 @@
 {
   "files": {
     "src/atoms/button/.rush/temp/chunked-rush-logs/button.build.chunks.jsonl": "c5ef7765ae5cda69295978ec375dae58d9728086",
-    "src/atoms/button/.rush/temp/package-deps_build.json": "e96ef1d2d77a6bf606e4cda2722e8145fc7ce79f",
+    "src/atoms/button/.rush/temp/package-deps_build.json": "c8661e1f6022a9147a237140c2cfa88ad7cf1742",
     "src/atoms/button/.rush/temp/shrinkwrap-deps.json": "420cdc2cf7f82185f3ee4425d10834a6743f0e84",
-    "src/atoms/button/CHANGELOG.json": "8cdd486c39468a08320a463b7c909b9093575ac8",
-    "src/atoms/button/CHANGELOG.md": "609eacb8a331fc39764d596ee2545f3e2b0ddf49",
+    "src/atoms/button/CHANGELOG.json": "60364666f5091fe8d4bd4d19f3c011d68794e7c5",
+    "src/atoms/button/CHANGELOG.md": "39b42c1b16a170e2b891564c7d1d4bbea42a0bb7",
     "src/atoms/button/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
     "src/atoms/button/babel.config.js": "9fec19f637f6112ecb957f3bfed3194254edcaed",
     "src/atoms/button/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
-    "src/atoms/button/package.json": "0a9970a57904eee2d869a0d2f7095fe88b4c8803",
+    "src/atoms/button/package.json": "fbc89161f81c3b01f137479058db2e36f2441d52",
     "src/atoms/button/pnpm-lock.yaml": "d1a3550af9daf07f95ee4d16f79f3f1b2a0602fe",
     "src/atoms/button/src/Button.tsx": "25b5737ddd5c60e40aaf5caeb277f9853c22cde3",
     "src/atoms/button/src/__tests__/Button.test.tsx": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",

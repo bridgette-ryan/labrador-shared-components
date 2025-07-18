@@ -1,7 +1,7 @@
 {
   "files": {
     "src/shared/aria-props/.rush/temp/chunked-rush-logs/aria-props.build.chunks.jsonl": "c5ef7765ae5cda69295978ec375dae58d9728086",
-    "src/shared/aria-props/.rush/temp/package-deps_build.json": "e68fc2c1a2c76602a5af76a042054bb473ce2730",
+    "src/shared/aria-props/.rush/temp/package-deps_build.json": "25e6dbd12f3e40321764f96170129875946c5a86",
     "src/shared/aria-props/.rush/temp/shrinkwrap-deps.json": "f9df7c6e825a276adb36bed70cc84be796311354",
     "src/shared/aria-props/CHANGELOG.json": "369e3bcdcaa4fd7aab353b84f4416bae42ab7b2e",
     "src/shared/aria-props/CHANGELOG.md": "13031f7499792b47e84a66562eb8eefd04ed535f",
