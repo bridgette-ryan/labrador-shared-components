@@ -1,0 +1,12 @@
+{
+  "files": {
+    "src/shared/aria-props/.rush/temp/shrinkwrap-deps.json": "f9df7c6e825a276adb36bed70cc84be796311354",
+    "src/shared/aria-props/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/shared/aria-props/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
+    "src/shared/aria-props/package.json": "80523a00cb12eed11803e68a2ca6fa9a03c6a4b8",
+    "src/shared/aria-props/src/AriaProps.tsx": "ea62e88f6f57e240ca7039e4df3cc6006e89db59",
+    "src/shared/aria-props/src/index.ts": "5341c8d6319e68bdf72ea1c60e1ff8a3939c15f8",
+    "src/shared/aria-props/tsconfig.json": "8283f6bac22cc1fa5788c6e92fa50b9a735d22dc"
+  },
+  "arguments": "npx tsc "
+}

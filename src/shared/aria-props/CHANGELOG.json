@@ -1,0 +1,19 @@
+{
+  "name": "@labrador-sgd/aria-props",
+  "entries": [
+    {
+      "version": "0.0.1",
+      "tag": "@labrador-sgd/aria-props_v0.0.1",
+      "date": "Fri, 18 Jul 2025 11:17:50 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "initialized aria props",
+            "author": "Bridgette Ryan <bridgetteryan3@gmail.com>",
+            "commit": "039267490ef86f6e534ae44792798309d760c8eb"
+          }
+        ]
+      }
+    }
+  ]
+}

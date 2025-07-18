@@ -1,10 +1,14 @@
 {
   "files": {
+    "src/layouts/smart-grid/.rush/temp/chunked-rush-logs/smart-grid.build.chunks.jsonl": "c5ef7765ae5cda69295978ec375dae58d9728086",
+    "src/layouts/smart-grid/.rush/temp/package-deps_build.json": "4b25fc668a304bfcee497630451a98a8c22ac88c",
     "src/layouts/smart-grid/.rush/temp/shrinkwrap-deps.json": "dce251fc562be17489271fe755763c889a23d762",
+    "src/layouts/smart-grid/CHANGELOG.json": "87d26c2a842b5db92e728c5d5139dbeec84c3082",
+    "src/layouts/smart-grid/CHANGELOG.md": "9a6a4104f474b2ab852a92dd50271ef20db376de",
     "src/layouts/smart-grid/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
     "src/layouts/smart-grid/babel.config.js": "9fec19f637f6112ecb957f3bfed3194254edcaed",
     "src/layouts/smart-grid/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
-    "src/layouts/smart-grid/package.json": "3bc049709f0e158222916c8d639df5333736f652",
+    "src/layouts/smart-grid/package.json": "b22700da5c600bd5ccf57a9e769cec86faa92428",
     "src/layouts/smart-grid/pnpm-lock.yaml": "69a737f9146699681f6485fa370871cfaa9a60a0",
     "src/layouts/smart-grid/src/SmartGrid.tsx": "af3f0fcb42119108d81b3cfea057d7fbf5767c7c",
     "src/layouts/smart-grid/src/__tests__/SmartGrid.test.tsx": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
