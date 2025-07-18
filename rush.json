@@ -16,6 +16,8 @@
     "preRushx": [],
     "postRushx": []
   },
+  "projectFolderMinDepth": 1,
+  "projectFolderMaxDepth": 5,
   "variants": [],
   "allowedProjectTags": [
     "shared-component",
