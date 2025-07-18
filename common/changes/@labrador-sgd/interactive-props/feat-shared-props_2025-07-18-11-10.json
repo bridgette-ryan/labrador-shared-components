@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/interactive-props",
+      "comment": "initialized interactive props",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@labrador-sgd/interactive-props"
+}

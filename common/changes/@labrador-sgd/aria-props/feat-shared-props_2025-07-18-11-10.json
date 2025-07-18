@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/aria-props",
+      "comment": "initialized aria props",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@labrador-sgd/aria-props"
+}
