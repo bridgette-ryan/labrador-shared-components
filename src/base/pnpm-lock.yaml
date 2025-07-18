@@ -11,10 +11,16 @@ importers:
       '@babel/preset-react':
         specifier: ^7.27.1
         version: 7.27.1(@babel/core@7.28.0)
+      eslint:
+        specifier: ^9.31.0
+        version: 9.31.0
     devDependencies:
       '@eslint/js':
         specifier: ^9.31.0
         version: 9.31.0
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       '@testing-library/jest-dom':
         specifier: ^6.6.3
         version: 6.6.3
