@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/button",
+      "comment": "added shared prop types",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@labrador-sgd/button"
+}

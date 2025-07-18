@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@labrador-sgd/aria-props",
+      "comment": "removed extra 'script' in package.json",
+      "type": "none"
+    }
+  ],
+  "packageName": "@labrador-sgd/aria-props"
+}
