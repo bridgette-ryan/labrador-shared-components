@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
           
       - name: Verify Change Logs
         run: node common/scripts/install-run-rush.js change --verify
@@ -38,10 +41,9 @@ jobs:
         
       - name: Rush Publish (Dry Run)
         run: |
-          export NPM_AUTH_TOKEN=${{ secrets.NPMJS_AUTH_TOKEN }}
           node common/scripts/install-run-rush.js publish --registry https://registry.npmjs.org
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
         
   # Job for main branch - actual publish
   publish-on-merge:
@@ -67,6 +69,8 @@ jobs:
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
           
       - name: Verify Change Logs
         run: node common/scripts/install-run-rush.js change --verify
@@ -79,29 +83,20 @@ jobs:
         
       - name: Rush Build
         run: node common/scripts/install-run-rush.js build
-          
-      - name: Setup npm authentication
+        
+      - name: Verify npm authentication
         run: |
-          # Create/update .npmrc in the publish directory
-          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
-          echo "access=public" >> ~/.npmrc
-          
-          # Also ensure Rush's publish home has the correct config
-          mkdir -p common/temp/publish-home
-          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > common/temp/publish-home/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> common/temp/publish-home/.npmrc
-          echo "access=public" >> common/temp/publish-home/.npmrc
-          
-          # Verify the token works
+          echo "Testing npm authentication..."
           npm whoami
+          echo "Testing access to @labrador-sgd scope..."
+          npm view @labrador-sgd/button
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
-
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          
       - name: Rush Publish
         run: node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --set-access-level public
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
           
       - name: Create Pull Request for version updates
         if: success()
