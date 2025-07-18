@@ -1,0 +1,45 @@
+{
+  "name": "@labrador-sgd/component-base",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npx tsc",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bridgette-ryan/labrador-shared-components"
+  },
+  "author": "Bridgette Ryan (bridgetteryan3@gmail.com)",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.14",
+    "@types/react": "^19.1.8",
+    "bootstrap": "^5.3.7",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "lint-staged": "^16.1.2",
+    "react": "^19.1.0",
+    "react-test-renderer": "^19.1.0",
+    "ts-jest": "^29.4.0",
+    "ts-loader": "^9.5.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.37.0",
+    "webpack": "^5.100.2"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.27.1"
+  }
+}
