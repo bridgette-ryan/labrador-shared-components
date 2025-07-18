@@ -1,0 +1,19 @@
+{
+  "name": "@labrador-sgd/smart-grid",
+  "entries": [
+    {
+      "version": "0.0.1",
+      "tag": "@labrador-sgd/smart-grid_v0.0.1",
+      "date": "Fri, 18 Jul 2025 09:09:59 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "stubbed to return div for now",
+            "author": "Bridgette Ryan <bridgetteryan3@gmail.com>",
+            "commit": "883f56e3f0b630e59bef065c3b091a73be7f63ea"
+          }
+        ]
+      }
+    }
+  ]
+}

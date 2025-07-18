@@ -1,0 +1,16 @@
+{
+  "files": {
+    "src/layouts/column/.rush/temp/shrinkwrap-deps.json": "060062cec62ffe62bdf73b71ab46e21d2911623c",
+    "src/layouts/column/README.md": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/column/babel.config.js": "9fec19f637f6112ecb957f3bfed3194254edcaed",
+    "src/layouts/column/eslint.config.mjs": "e8fecda4cc21bb28786fd5dd9dafe632f217a776",
+    "src/layouts/column/package.json": "e9ce19e802d7eb3bbf5460b537a71bfa1aee9328",
+    "src/layouts/column/pnpm-lock.yaml": "69a737f9146699681f6485fa370871cfaa9a60a0",
+    "src/layouts/column/src/Column.tsx": "b40042449f1bb73c4cab382258a8cafe9ed77648",
+    "src/layouts/column/src/__tests__/Column.test.tsx": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/column/src/index.ts": "c9797ecc56c1a4fea30909053b3fffecbc6e54be",
+    "src/layouts/column/src/types/Column.types.ts": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "src/layouts/column/tsconfig.json": "8283f6bac22cc1fa5788c6e92fa50b9a735d22dc"
+  },
+  "arguments": "npx tsc "
+}
