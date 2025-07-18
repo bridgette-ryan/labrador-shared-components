@@ -1,3 +1,6 @@
+# rush files
+/common/temp
+
 # Logs
 logs
 *.log

@@ -11,6 +11,30 @@
    * "rush my-global-command --help".
    */
   "commands": [
+
+    {
+      "commandKind": "global",
+
+      "name": "create-component",
+      "summary": "Create a component",
+      "description": "This command creates a component based on inputs",
+
+      "safeForSimultaneousRushProcesses": false,
+
+      "shellCommand": "node common/scripts/create-component.js"
+    },
+    {
+      "commandKind": "global",
+
+      "name": "storybook",
+      "summary": "Runs Storybook",
+      "description": "This command runs Storybook",
+
+      "safeForSimultaneousRushProcesses": false,
+
+      "shellCommand": "pnpm run storybook --prefix ./storybook"
+    }
+
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
