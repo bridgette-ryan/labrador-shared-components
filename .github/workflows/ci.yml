@@ -98,7 +98,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_AUTH_TOKEN }}
           
-      - name: Create Pull Request for version updates
+      - name: Create and auto-merge Pull Request for version updates
         if: success()
         run: |
           # Check if there are any changes to commit
@@ -115,14 +115,32 @@ jobs:
             git push origin $BRANCH_NAME
             
             # Create PR using GitHub CLI
-            gh pr create \
+            PR_URL=$(gh pr create \
               --title "Auto: Update package versions after publish" \
               --body "This PR contains automatic version updates after publishing packages.
 
             Build ID: ${{ github.run_id }}
-            Commit: ${{ github.sha }}" \
+            Commit: ${{ github.sha }}
+
+            This PR will be automatically merged as it contains only automated version updates." \
               --base main \
-              --head $BRANCH_NAME
+              --head $BRANCH_NAME \
+              --format json | jq -r '.url')
+            
+            echo "Created PR: $PR_URL"
+            
+            # Extract PR number from URL
+            PR_NUMBER=$(echo $PR_URL | sed 's/.*\/pull\/\([0-9]*\)/\1/')
+            echo "PR Number: $PR_NUMBER"
+            
+            # Wait a moment for the PR to be fully created
+            sleep 5
+            
+            # Auto-merge the PR
+            echo "Attempting to merge PR #$PR_NUMBER"
+            gh pr merge $PR_NUMBER --merge --delete-branch
+            
+            echo "Successfully merged PR #$PR_NUMBER and deleted branch $BRANCH_NAME"
           else
             echo "No changes to commit, skipping PR creation"
           fi
@@ -139,5 +157,5 @@ jobs:
           if [ -d "common/temp" ]; then
             echo "Contents of common/temp directory:"
             ls -la common/temp/
-            find common/temp -name "*.log" -type f -exec echo "Contents of {}:" \; -exec cat {} \; -exec echo "--------------------------------" \;
+            find common/temp -name "*.log" -type f -exec echo "--------------------------------" \;
           fi
