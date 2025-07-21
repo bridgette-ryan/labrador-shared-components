@@ -1,7 +1,7 @@
 {
   "files": {
     "src/shared/default-props/.rush/temp/chunked-rush-logs/default-props.build.chunks.jsonl": "c5ef7765ae5cda69295978ec375dae58d9728086",
-    "src/shared/default-props/.rush/temp/package-deps_build.json": "d1144d48975e90f0ff425a452584570fda31e8b5",
+    "src/shared/default-props/.rush/temp/package-deps_build.json": "068708239861f688f46808315e93cabcff86254f",
     "src/shared/default-props/.rush/temp/shrinkwrap-deps.json": "dee7cf7512206e493f22224850243478e838caf0",
     "src/shared/default-props/CHANGELOG.json": "e61de5428d2818ff5b587b31c055c7955e1370fc",
     "src/shared/default-props/CHANGELOG.md": "c36b5143ac1da985c3b3a23e443df14c28602813",
